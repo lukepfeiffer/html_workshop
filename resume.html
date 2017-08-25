@@ -1,6 +1,7 @@
 <html>
 
   <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/stylesheet.css" >
     <title> Personal Website </title>
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type="text/css"></link>
@@ -111,8 +112,9 @@
             <li> Terminal </li>
           </ul>
         </div>
-
       </div>
+
+      <a href="#" class="scroll-top"> Back to top </a>
     </div>
 
     <div class="render-nav">
@@ -123,6 +125,14 @@
         <a href="http://github.com"> <i class="fa fa-github-square"> </i> </a>
       </footer>
     </div>
-
   </body>
+
+  <script>
+    $("body").on("click", ".scroll-top", function(event){
+      event.preventDefault();
+      $('body').animate({
+        'scrollTop' : $("h1").offset().top
+      }, 700);
+    });
+  </script>
 </html>
