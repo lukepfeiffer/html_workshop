@@ -3,14 +3,26 @@
     <title> Lukerpfeiffer </title>
     <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet'  type= 'text/css'>
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-  </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
 
   <div class= "container">
-    <nav class="nav">
+    <nav class="nav-mobile" id="nav">
       <a href= "#top"> Luke Pfeiffer </a>
       <a href= "#about" class="hover"> About </a>
       <a href= "#resume" class="hover"> Resume </a>
       <a href= "#contact" class="hover"> Contact </a>
+
+      <span class="float-right">
+        <i class="fas fa-bars"></i>
+      </span>
+
+      <div class="on-click">
+        <p> <a> Other option 1 </a> </p>
+        <p> <a> Other option 1 </a> </p>
+        <p> <a> Other option 1 </a> </p>
+        <p> <a> Other option 1 </a> </p>
+      </div>
     </nav>
 
     <div id="main">
@@ -36,9 +48,9 @@
         <h1> Resume </h1>
         <div class="header">
           <p> Luke Pfeiffer </p>
-          <p> lukerpfeiffer@ufl.edu </p>
+          <p> <a href="mailto:lukerpfeiffer@ufl.edu"> lukerpfeiffer@ufl.edu </a></p>
           <p> 
-            <a href="/"> 
+            <a href="https://www.linkedin.com/in/lukerpfeiffer"> 
               <i class="fab fa-linkedin"></i>
               lukerpfeiffer 
             </a>
@@ -119,24 +131,28 @@
         <div class="sub">
           <h2> Professional </h2>
           <p> Email: <a href="mailto:lukerpfeiffer@ufl.edu">  lukerpfeiffer@ufl.edu </a></p>
-          <p> Linkedin: <a href="/"> @lukerpfeiffer </a> </p>
-          <p> Github<a href="/"> @lukepfeiffer </a> </p>
+          <p> Linkedin: <a href="https://www.linkedin.com/in/lukerpfeiffer"> @lukerpfeiffer </a> </p>
+          <p> Github<a href="http://github.com/lukepfeiffer"> @lukepfeiffer </a> </p>
         </div>
 
         <div class="sub">
           <h2> Personal </h2>
           <p> Email: <a href="mailto:lukerpfeiffer@gmail.com">  lukerpfeiffer@gmail.com </a></p>
-          <p> Facebook: <a href="/"> Luke Pfeiffer </a> </p>
-          <p> Twitter<a href="/"> @lukepfeiffer </a> </p>
+          <p> Facebook: <a href="https://www.facebook.com/luke.pfeiffer.7"> Luke Pfeiffer </a> </p>
+          <p> Twitter<a href="https://twitter.com/lukerpfeiffer"> @lukepfeiffer </a> </p>
         </div>
+      </div>
+
+      <div class="to-top-container">
+        <a class="to-top" href="#nav"> Back to Top <i class="fas fa-arrow-up"></i> </a>
       </div>
     </body>
 
     <footer class="footer">
-      <a href="/"> <i class="fab fa-facebook"></i> </a>
-      <a href="/"> <i class="fab fa-twitter-square"></i> </a>
-      <a href="/"> <i class="fab fa-linkedin"></i> </a>
-      <a href="/"> <i class="fab fa-github-square"></i> </a>
+      <a href="https://www.facebook.com/luke.pfeiffer.7"> <i class="fab fa-facebook"></i> </a>
+      <a href="https://twitter.com/lukerpfeiffer"> <i class="fab fa-twitter-square"></i> </a>
+      <a href="https://www.linkedin.com/in/lukerpfeiffer"> <i class="fab fa-linkedin"></i> </a>
+      <a href="http://github.com/lukepfeiffer"> <i class="fab fa-github-square"></i> </a>
     </footer>
   </div>
 </html>
@@ -183,6 +199,7 @@
   }
 
   footer{
+    padding: 3em 0;
   }
 
   footer a{
@@ -238,6 +255,11 @@
     text-align: center;
   }
 
+  #resume .header a{
+    text-decoration: none;
+    color: #3e5c77;
+  }
+
   #resume .header p{
     margin: 10px 0;
   }
@@ -279,7 +301,11 @@
     margin: 1em;
     padding: 1em;
   }
-  
+
+  #contact .sub a{
+    text-decoration: none;
+    color: #517a9e;
+  }
 
   body{
     margin: 0;
@@ -288,4 +314,66 @@
   .special{
     margin-left: .5em;
   }
+
+  .float-right{
+    float: right;
+    margin-right: 20px;
+    font-size: 1.5em;
+  }
+
+  .on-click{
+    display: none;
+  }
+
+  .to-top-container{
+    width: 20%;
+    text-align: center;
+    margin: 1em auto;
+  }
+
+  .to-top-container a{
+    text-decoration: none;
+    color: #517a9e;
+  }
+
+  .to-top-container a:hover{
+    color: #3e5c77;
+  }
+
+  html{
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+
+  html ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
 </style>
+
+<script>
+  $("nav").on("click", ".fa-bars", function(){
+    $(".on-click").show();
+  });
+
+  $("nav").on("click", ".on-click", function(){
+    $(".on-click").hide();
+  });
+
+  $("nav").on("click", "a", function(event){
+    var linkTo = $(this).attr("href");
+    event.preventDefault();
+    $('body').animate({
+      'scrollTop' : $(linkTo).offset().top
+    }, 700);
+  });
+
+  $("body").on("click", "#to-top", function(event){
+    var linkTo = $(this).attr("href");
+    event.preventDefault();
+    $('body').animate({
+      'scrollTop' : $(linkTo).offset().top
+    }, 700);
+  });
+</script>
